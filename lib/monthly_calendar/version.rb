@@ -1,3 +1,3 @@
-module MonthlyCalendar
-  VERSION = "0.1.0"
+class MonthlyCalendar
+  VERSION = "1.1.1"
 end
