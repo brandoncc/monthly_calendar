@@ -15,7 +15,6 @@ class MonthlyCalendar
     @pages_count = options[:pages] || 1
 
     @pdf = Prawn::Document.new(page_layout: :landscape, top_margin: 1.in, skip_page_creation: true)
-    @pdf.define_grid(rows: 5, columns: 7)
     create
   end
 
@@ -37,10 +36,19 @@ class MonthlyCalendar
     calendar_contents.each do |(month, weeks)|
       pdf.start_new_page
 
+      days_in_month = weeks.flatten.compact.max
+      first_day_of_week = weeks[0].index(1)
+
+      weeks_count = ((days_in_month + first_day_of_week) / 7.0).ceil
+
+      pdf.define_grid(rows: weeks_count, columns: 7)
+
       draw_header(month)
 
       weeks.each_with_index do |week, week_index|
-        draw_notes(week_index, find_nil_cells(week))
+        draw_notes(week_index,
+                   find_nil_cells(week),
+                   weeks_count == 6 ? :close : :far)
 
         week.each_with_index do |day, day_index|
           draw_day_square(week_index, day_index, day)
@@ -61,9 +69,13 @@ class MonthlyCalendar
     @pages_count.times do |page_index|
       month_text = current_month.strftime("%B %Y")
 
-      days = [[], [], [], [], []]
       days_in_month = Date.new(current_month.year, current_month.month, -1).mday
       first_day_of_week = Date.new(current_month.year, current_month.month, 1).wday
+
+      weeks_count = ((days_in_month + first_day_of_week) / 7.0).ceil
+
+      days = []
+      days << [] until days.count == weeks_count
 
       first_day_of_week.times do
         days[0] << nil
@@ -76,7 +88,11 @@ class MonthlyCalendar
 
       days[4] << nil until days[4].count == 7
 
-      months << [ month_text, days]
+      unless days[5].nil?
+        days[5] << nil until days[5].count == 7
+      end
+
+      months << [month_text, days]
       current_month = current_month.next_month
     end
 

@@ -43,7 +43,7 @@ module UI
     end
   end
 
-  def draw_notes(row, nil_cells)
+  def draw_notes(row, nil_cells, lines_distance)
     return if nil_cells[:count].zero?
 
     pdf.grid([row, nil_cells[:start]],
@@ -54,10 +54,14 @@ module UI
                      at: [10, pdf.bounds.height - 12],
                      size: 5
 
-      pdf.line [10, 10], [pdf.bounds.width - 10, 10]
-      pdf.line [10, 33], [pdf.bounds.width - 10, 33]
-      pdf.line [10, 56], [pdf.bounds.width - 10, 56]
-      pdf.line [10, 79], [pdf.bounds.width - 10, 79]
+      starting_line_top = 10
+      line_position_increment = lines_distance == :close ? 17 : 22
+
+      4.times do |i|
+        top = starting_line_top + (i * line_position_increment)
+        pdf.line [10, top],
+                 [pdf.bounds.width - 10, top]
+      end
     end
   end
 end
