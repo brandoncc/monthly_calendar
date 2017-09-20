@@ -1,3 +1,4 @@
+require "monthly_calendar/version"
 require "date"
 require "prawn"
 require "prawn/measurement_extensions"

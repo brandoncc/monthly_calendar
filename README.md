@@ -5,6 +5,22 @@ space to write notes.
 
 It allows you to create PDF files like [this one](samples/calendar.pdf).
 
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'monthly_calendar'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install monthly_calendar
+
 ## Standard Usage
 
 ```ruby
@@ -38,10 +54,14 @@ end
 
 This usage will allow you to easily do something like render the value as a response from a web server.
 
-## Bugs, Improvements, Etc
+## Contributing
 
-If you find a bug or have an idea for an improvement, please open an issue. If you would like to take a stab at fixing any bugs or adding a feature, feel free to open a pull request.
+Bug reports and pull requests are welcome on GitHub at https://github.com/brandoncc/monthly_calendar. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-## Tests
+## License
 
-There are not currently any tests, but eventually there should be.
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the MonthlyCalendar project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/brandoncc/monthly_calendar/blob/master/CODE_OF_CONDUCT.md).
