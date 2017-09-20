@@ -3,7 +3,7 @@ require "prawn"
 require "prawn/measurement_extensions"
 require_relative "./ui"
 
-class Calendar
+class MonthlyCalendar
   include UI
 
   attr_reader :pdf
@@ -19,7 +19,7 @@ class Calendar
   end
 
   def save(file_name = "calendar.pdf")
-    pdf.render_file file_name
+    pdf.render_file File.expand_path(file_name)
   end
 
   def stream
