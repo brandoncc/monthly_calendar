@@ -5,3 +5,4 @@ ruby "2.4.1"
 # gem "rails"
 
 gem "prawn"
+gem "pry"
