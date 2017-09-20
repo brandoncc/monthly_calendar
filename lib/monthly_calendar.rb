@@ -24,7 +24,11 @@ class MonthlyCalendar
   end
 
   def stream
-    yield(pdf.render)
+    yield(to_s)
+  end
+
+  def to_s
+    pdf.render
   end
 
   private

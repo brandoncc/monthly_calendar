@@ -34,7 +34,9 @@ This example is the exact code which was used to generate the sample calendar. T
 
 ## Advanced Usage
 
-The API also offers a `#stream` method which will yield the pdf as a string (using [Prawn::Document#render](http://prawnpdf.org/docs/0.11.1/Prawn/Document.html#method-i-render)) to the block you supply.
+The API offers a `#to_s` method which will return the pdf as a string (using [Prawn::Document#render](http://prawnpdf.org/docs/0.11.1/Prawn/Document.html#method-i-render)).
+
+The API also offers a `#stream` method which will yield the pdf as a string to the block you supply.
 
 ```ruby
 require 'monthly_calendar'
@@ -52,7 +54,7 @@ end
 # ... 
 ```
 
-This usage will allow you to easily do something like render the value as a response from a web server.
+These methods will allow you to easily do something like render the value as a response from a web server.
 
 ## Contributing
 
